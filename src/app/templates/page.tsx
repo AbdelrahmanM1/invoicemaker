@@ -1,4 +1,4 @@
-
+import Footer from "../components/footer";
 
 
 
@@ -15,6 +15,7 @@ export default function templates() {
       <h1 className="text-4xl font-bold text-gray-900">
         Hi World
       </h1>
+      <Footer />
      </main>
   );
 }
