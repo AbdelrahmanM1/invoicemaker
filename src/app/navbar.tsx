@@ -49,7 +49,7 @@ export default function Navbar() {
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-blue-900">
+        <Link href="/" className="text-2xl font-bold text-blue-900 hover:text-blue-700 transition-all duration-300">
           InvoiceMaker
         </Link>
 
