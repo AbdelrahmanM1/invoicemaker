@@ -21,11 +21,11 @@ export default function AboutPage() {
             <section>
               <h2 className="text-3xl font-semibold text-blue-900 mb-4">Our Story</h2>
               <p className="text-slate-700 leading-relaxed text-lg">
-                Invoice Maker was born out of a simple idea: invoicing shouldn't be complicated. 
+                Invoice Maker was born out of a simple idea: invoicing Should not be complicated. 
                 As developers and freelancers ourselves, we know the frustration of clunky systems, 
-                confusing pricing, and poor designs. That’s why we built Invoice Maker — a platform that 
-                combines elegance with functionality. Whether you're a solo freelancer or managing 500+ invoices 
-                for a company, we’re here to help you work smarter.
+                confusing pricing, and poor designs. That is why we built Invoice Maker — a platform that 
+                combines elegance with functionality. Whether you are a solo freelancer or managing 500+ invoices 
+                for a company, we are here to help you work smarter.
               </p>
             </section>
 

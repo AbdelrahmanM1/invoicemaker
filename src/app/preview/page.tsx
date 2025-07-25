@@ -16,7 +16,7 @@ export default function PreviewPage() {
           🚧 This Page is Under Development
         </h1>
         <p className="text-lg text-gray-600 mb-6 max-w-xl">
-          We're currently building this feature to serve you better. Please check back soon!
+          We are currently building this feature to serve you better. Please check back soon!
         </p>
 
         <Link
