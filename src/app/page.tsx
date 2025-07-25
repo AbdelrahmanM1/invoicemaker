@@ -25,13 +25,13 @@ export default function Home() {
               A free and easy-to-use tool to create, customize, and export professional invoices in moments.
             </p>
             <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
               href="/editor"
-              className="mt-8 inline-block bg-blue-900 text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-blue-800 transition-all duration-300"
-            >
-              Get Started
-            </motion.a>
+              className="mt-8 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-900 to-blue-700 text-white px-8 py-3 rounded-full font-semibold text-base sm:text-lg shadow-lg hover:from-blue-800 hover:to-blue-600 transition-all duration-300"
+               >
+              <span>🚀 Get Started</span>
+           </motion.a>
           </motion.header>
         </section>
 
