@@ -67,7 +67,11 @@ export default function AboutPage() {
                   height={128}
                   className="rounded-full shadow-md mb-4 object-cover"
                 />
-                <h3 className="text-xl font-bold text-blue-900">Abdelrahman Moharram</h3>
+                <h3 className="text-xl font-bold text-blue-900">
+                    <a href="https://abdelrahmanmoharram.vercel.app" className="relative inline-block transition-all duration-300 text-blue-900 hover:text-blue-700 hover:underline hover:underline-offset-4">
+                           Abdelrahman Moharram
+                     </a>
+                </h3>
                 <p className="text-slate-700 text-lg">Founder & Full-Stack Developer</p>
                 <p className="text-slate-600 max-w-xl mt-2">
                   Passionate about building tools that help real people. Abdelrahman built Invoice Maker to make invoicing easier for everyone.

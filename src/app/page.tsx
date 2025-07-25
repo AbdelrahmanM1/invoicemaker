@@ -11,7 +11,7 @@ export default function Home() {
         <section className="bg-amber-300 w-full">
           <header className="flex flex-col items-center justify-center text-center px-4 sm:px-6 py-20 sm:py-24">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-blue-900 mb-4">
-              <u>Generate</u> Your <br /> Invoices in Seconds
+              Generate Your <br /> Invoices in Seconds
             </h1>
             <p className="text-base sm:text-lg text-blue-800 max-w-2xl font-medium">
               A free and easy-to-use tool to create, customize, and export professional invoices in moments.
@@ -87,7 +87,11 @@ export default function Home() {
                   height={128}
                   className="rounded-full mb-4 shadow-md object-cover w-32 h-32"
                 />
-                <h4 className="text-lg sm:text-xl font-semibold text-blue-800">Abdelrahman Moharram</h4>
+                <h4 className="text-lg sm:text-xl font-semibold text-blue-800">
+                    <a href="https://abdelrahmanmoharram.vercel.app" className="relative inline-block transition-all duration-300 text-blue-900 hover:text-blue-700 hover:underline hover:underline-offset-4">
+                    Abdelrahman Moharram
+                    </a>
+                  </h4>
                 <p className="text-gray-700 text-sm sm:text-base">Founder & Lead Developer of Invoice Maker</p>
               </div>
             </div>
