@@ -1,11 +1,37 @@
 "use client";
 
+import { useState } from "react";
 import Footer from "./components/footer";
 import Navbar from "./navbar";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function Home() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "Do I need to sign up to use this tool?",
+      answer:
+        "No! You can start generating invoices right away. No account or sign-in is required.",
+    },
+    {
+      question: "Is this really free to use?",
+      answer:
+        "Yes, it's completely free. We believe everyone should have access to professional tools without barriers.",
+    },
+    {
+      question: "Can I download my invoice as a PDF?",
+      answer:
+        "Absolutely. Once you're done editing, you can export your invoice as a high-quality PDF with one click.",
+    },
+    {
+      question: "Will my data be saved?",
+      answer:
+        "No data is stored on our servers. Everything is local and secure on your browser.",
+    },
+  ];
+
   return (
     <>
       <Navbar />
@@ -29,9 +55,9 @@ export default function Home() {
               whileTap={{ scale: 0.96 }}
               href="/editor"
               className="mt-8 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-900 to-blue-700 text-white px-8 py-3 rounded-full font-semibold text-base sm:text-lg shadow-lg hover:from-blue-800 hover:to-blue-600 transition-all duration-300"
-               >
+            >
               <span>🚀 Get Started</span>
-           </motion.a>
+            </motion.a>
           </motion.header>
         </section>
 
@@ -147,27 +173,9 @@ export default function Home() {
             className="max-w-4xl mx-auto text-center"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-8">Frequently Asked Questions</h2>
-            <div className="space-y-6 text-left">
-              {[
-                {
-                  question: "Do I need to sign up to use this tool?",
-                  answer: "No! You can start generating invoices right away. No account or sign-in is required.",
-                },
-                {
-                  question: "Is this really free to use?",
-                  answer:
-                    "Yes, it's completely free. We believe everyone should have access to professional tools without barriers.",
-                },
-                {
-                  question: "Can I download my invoice as a PDF?",
-                  answer:
-                    "Absolutely. Once you're done editing, you can export your invoice as a high-quality PDF with one click.",
-                },
-                {
-                  question: "Will my data be saved?",
-                  answer: "No data is stored on our servers. Everything is local and secure on your browser.",
-                },
-              ].map((item, i) => (
+
+            <div className="space-y-4 text-left">
+              {faqs.map((item, i) => (
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.01 }}
@@ -175,10 +183,23 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.2 }}
                   viewport={{ once: true }}
-                  className="bg-blue-50 p-6 rounded-xl shadow-sm hover:shadow-md transition text-sm sm:text-base"
+                  className="bg-blue-50 p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 >
-                  <h4 className="font-semibold text-blue-800">{item.question}</h4>
-                  <p className="text-gray-700 mt-2">{item.answer}</p>
+                  <h4 className="font-semibold text-blue-800 flex justify-between items-center">
+                    {item.question}
+                    <span className="text-lg">{openIndex === i ? "−" : "+"}</span>
+                  </h4>
+                  {openIndex === i && (
+                    <motion.p
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-gray-700 mt-3 text-sm sm:text-base"
+                    >
+                      {item.answer}
+                    </motion.p>
+                  )}
                 </motion.div>
               ))}
             </div>
