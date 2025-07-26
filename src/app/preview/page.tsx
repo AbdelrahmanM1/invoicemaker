@@ -52,24 +52,21 @@ export default function PreviewPage() {
   const [error, setError] = useState<string>('');
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // Load data on component mount
   useEffect(() => {
     const loadPreviewData = async () => {
       try {
-        // Get data from localStorage or URL params
-        const templateId = searchParams.get('template') || localStorage.getItem('selected_template');
+        const templateId = searchParams.get('template') || localStorage.getItem('selected_template') || '';
         const savedInvoiceData = localStorage.getItem('current_invoice_data');
-        
+
         if (!templateId || !savedInvoiceData) {
           setError('No invoice data found. Please create an invoice first.');
           setLoading(false);
           return;
         }
 
-        const invoiceData: InvoiceData = JSON.parse(savedInvoiceData);
-        setInvoiceData(invoiceData);
+        const parsedData: InvoiceData = JSON.parse(savedInvoiceData);
+        setInvoiceData(parsedData);
 
-        // Fetch template
         const templateResponse = await fetch(`/api/templates/${templateId}`);
         if (!templateResponse.ok) {
           throw new Error('Failed to fetch template');
@@ -78,13 +75,10 @@ export default function PreviewPage() {
         const templateData = await templateResponse.json();
         if (templateData.success) {
           setTemplate(templateData.template);
-          
-          // Create preview
-          await createPreview(templateId, invoiceData);
+          await createPreview(templateId, parsedData);
         } else {
           throw new Error(templateData.message || 'Failed to load template');
         }
-
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
         console.error('Error loading preview:', err);
@@ -94,19 +88,14 @@ export default function PreviewPage() {
     };
 
     loadPreviewData();
-  }, [searchParams]);
-
+  }, 
+  [searchParams]);
   const createPreview = async (templateId: string, invoiceData: InvoiceData) => {
     try {
       const response = await fetch('/api/preview', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          templateId,
-          invoiceData
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ templateId, invoiceData }),
       });
 
       const data = await response.json();
@@ -123,35 +112,28 @@ export default function PreviewPage() {
 
   const handleExport = async (format: 'pdf' | 'png') => {
     if (!previewId) return;
-    
+
     setExporting(format);
     try {
       const response = await fetch(`/api/export/${format}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          previewId
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ previewId }),
       });
 
       if (!response.ok) {
         throw new Error(`Failed to export ${format.toUpperCase()}`);
       }
 
-      // Download the file
       const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
+      const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.style.display = 'none';
       a.href = url;
       a.download = `invoice-${invoiceData?.invoiceNumber || 'preview'}.${format}`;
       document.body.appendChild(a);
       a.click();
-      window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-
+      URL.revokeObjectURL(url);
     } catch (err) {
       setError(err instanceof Error ? err.message : `Failed to export ${format.toUpperCase()}`);
     } finally {
@@ -165,31 +147,27 @@ export default function PreviewPage() {
     setSaving(true);
     try {
       const invoiceId = `invoice-${Date.now()}`;
-      
+
       const response = await fetch('/api/invoices/save', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           invoiceId,
           templateId: template.id,
-          invoiceData
+          invoiceData,
         }),
       });
 
       const data = await response.json();
       if (data.success) {
-        // Save to localStorage as well
         const savedInvoices = JSON.parse(localStorage.getItem('saved_invoices') || '[]');
         savedInvoices.push({
           id: invoiceId,
           ...invoiceData,
           templateId: template.id,
-          savedAt: new Date().toISOString()
+          savedAt: new Date().toISOString(),
         });
         localStorage.setItem('saved_invoices', JSON.stringify(savedInvoices));
-        
         alert('Invoice saved successfully!');
       } else {
         throw new Error(data.message || 'Failed to save invoice');
@@ -202,7 +180,7 @@ export default function PreviewPage() {
   };
 
   const handleEdit = () => {
-    const templateId = template?.id || localStorage.getItem('selected_template');
+    const templateId = template?.id || localStorage.getItem('selected_template') || '';
     window.location.href = `/editor?template=${templateId}`;
   };
 
