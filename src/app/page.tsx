@@ -50,13 +50,24 @@ export default function Home() {
             <p className="text-base sm:text-lg text-blue-800 max-w-2xl font-medium">
               A free and easy-to-use tool to create, customize, and export professional invoices in moments.
             </p>
+
             <motion.a
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.96 }}
-              href="/editor"
+              href="/templates"
               className="mt-8 inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-900 to-blue-700 text-white px-8 py-3 rounded-full font-semibold text-base sm:text-lg shadow-lg hover:from-blue-800 hover:to-blue-600 transition-all duration-300"
             >
               <span>🚀 Get Started</span>
+            </motion.a>
+
+            {/* Transparent "Learn more" Button — Mobile Only */}
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="#features"
+              className="mt-4 block sm:hidden text-blue-900 border border-blue-900 px-6 py-2 rounded-full font-semibold text-sm bg-transparent hover:bg-blue-100 transition-all duration-300"
+            >
+              Learn more →
             </motion.a>
           </motion.header>
         </section>
