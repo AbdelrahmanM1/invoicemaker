@@ -43,9 +43,9 @@ export default function AboutPage() {
               <p className="text-slate-700 leading-relaxed text-lg">
                 Invoice Maker was born out of a simple idea: invoicing should not be complicated.
                 As developers and freelancers ourselves, we know the frustration of clunky systems,
-                confusing pricing, and poor designs. That’s why we built Invoice Maker — a platform that
+                confusing pricing, and poor designs. That is why we built Invoice Maker — a platform that
                 combines elegance with functionality. Whether you are a solo freelancer or managing 500+ invoices,
-                we’re here to help you work smarter.
+                we are here to help you work smarter.
               </p>
             </motion.section>
 
