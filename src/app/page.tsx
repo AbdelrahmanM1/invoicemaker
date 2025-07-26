@@ -64,7 +64,7 @@ export default function Home() {
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              href="#features"
+              href="/about"
               className="mt-4 block sm:hidden text-blue-900 border border-blue-900 px-6 py-2 rounded-full font-semibold text-sm bg-transparent hover:bg-blue-100 transition-all duration-300"
             >
               Learn more →
