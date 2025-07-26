@@ -2,7 +2,7 @@
 
 import Footer from "../components/footer";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 interface InvoiceData {
@@ -40,7 +40,7 @@ interface Template {
   html: string;
 }
 
-export default function PreviewPage() {
+function PreviewContent() {
   const searchParams = useSearchParams();
   const [invoiceData, setInvoiceData] = useState<InvoiceData | null>(null);
   const [template, setTemplate] = useState<Template | null>(null);
@@ -88,8 +88,8 @@ export default function PreviewPage() {
     };
 
     loadPreviewData();
-  }, 
-  [searchParams]);
+  }, [searchParams]);
+
   const createPreview = async (templateId: string, invoiceData: InvoiceData) => {
     try {
       const response = await fetch('/api/preview', {
@@ -401,5 +401,27 @@ export default function PreviewPage() {
 
       <Footer />
     </div>
+  );
+}
+
+// Loading fallback component
+function PreviewLoading() {
+  return (
+    <main className="flex flex-col min-h-screen bg-gray-50">
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 py-16">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mb-4"></div>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-2">Loading Preview...</h2>
+        <p className="text-gray-600">Please wait while we prepare your invoice preview</p>
+      </div>
+      <Footer />
+    </main>
+  );
+}
+
+export default function PreviewPage() {
+  return (
+    <Suspense fallback={<PreviewLoading />}>
+      <PreviewContent />
+    </Suspense>
   );
 }
