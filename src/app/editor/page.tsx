@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Invoice Editor – Invoice Maker",
+  title: "Invoice Editor | Invoice Maker",
   description: "Edit your invoice and see a real-time preview. This page is currently under construction.",
 };
 
-export default function PreviewPage() {
+export default function EditorPage() {
   return (
     <main className="flex flex-col min-h-screen bg-white">
       {/* content*/}

@@ -1,9 +1,9 @@
+import { Metadata } from "next";
 import Footer from "../components/footer";
-import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Invoice Templates – Invoice Maker",
+  title: "Invoice Templates | Invoice Maker",
   description: "Templates your invoice and see a real-time preview. This page is currently under construction.",
 };
 
