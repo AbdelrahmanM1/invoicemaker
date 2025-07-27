@@ -206,7 +206,7 @@ export default function Home() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       transition={{ duration: 0.3 }}
-                      className="text-gray-700 mt-3 text-sm sm:text-base"
+                      className="text-red-800 mt-3 text-sm sm:text-base"
                     >
                       {item.answer}
                     </motion.p>
