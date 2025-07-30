@@ -18,6 +18,7 @@ export interface InvoiceData {
   customerName?: string;
   customerEmail?: string;
   customerPhone?: string;
+  totalAmount: number;
   customerAddress?: string;
   invoiceDate: string;
   dueDate: string;
@@ -34,6 +35,7 @@ const MinimalTemplate = forwardRef<HTMLDivElement, InvoiceData>(({
   companyPhone,
   customerName,
   customerEmail,
+  totalAmount,
   customerPhone,
   customerAddress,
   invoiceDate,
@@ -42,7 +44,6 @@ const MinimalTemplate = forwardRef<HTMLDivElement, InvoiceData>(({
   currency,
   notes,
 }, ref) => {
-  const total = items.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0).toFixed(2);
 
   return (
     <div
@@ -97,7 +98,7 @@ const MinimalTemplate = forwardRef<HTMLDivElement, InvoiceData>(({
 
       {/* Total */}
       <div className="text-right text-base font-bold mb-4">
-        Total: {currency} {total}
+        Total: {currency} {totalAmount}
       </div>
 
       {/* Notes */}

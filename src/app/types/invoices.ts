@@ -20,4 +20,5 @@ export interface InvoiceData {
   items: InvoiceItem[];
   currency: string;
   notes?: string;
+  totalAmount?: number;
 }

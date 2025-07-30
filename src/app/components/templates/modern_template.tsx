@@ -15,6 +15,7 @@ export interface InvoiceData {
   companyAddress: string;
   companyEmail: string;
   companyPhone: string;
+  totalAmount: number;
   customerName?: string;
   customerEmail?: string;
   customerPhone?: string;
@@ -37,12 +38,12 @@ const ModernTemplate = forwardRef<HTMLDivElement, InvoiceData>(({
   customerPhone,
   customerAddress,
   invoiceDate,
+  totalAmount,
   dueDate,
   items,
   currency,
   notes,
 }, ref) => {
-  const total = items.reduce((sum, item) => sum + item.quantity * item.unitPrice, 0).toFixed(2);
 
   return (
     <div
@@ -101,7 +102,7 @@ const ModernTemplate = forwardRef<HTMLDivElement, InvoiceData>(({
       {/* Total */}
       <div className="flex justify-end mb-8">
         <div className="text-right">
-          <p className="text-lg font-bold">Total: {currency} {total}</p>
+          <p className="text-lg font-bold">Total: {currency} {totalAmount}</p>
         </div>
       </div>
 
