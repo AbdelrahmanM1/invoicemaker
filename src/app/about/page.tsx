@@ -90,7 +90,7 @@ export default function AboutPage() {
               <h2 className="text-3xl font-semibold text-blue-900 mb-4">What Makes Us Different</h2>
               <ul className="space-y-4 text-slate-700 text-lg list-disc list-inside">
                 <li>✨ Real-time invoice editing and live preview</li>
-                <li>💾 Create and manage multiple templates easily</li>
+                <li>💾 Create Invoices Templates easily</li>
                 <li>🎨 Clean, modern, and responsive UI</li>
               </ul>
             </motion.section>
@@ -143,7 +143,7 @@ export default function AboutPage() {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="/editor"
+                href="/templates"
                 className="inline-block bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
               >
                 Get Started
